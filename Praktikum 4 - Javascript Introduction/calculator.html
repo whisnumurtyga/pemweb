@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    .container h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">Simple Calculator</h1>
+    <div class="row mt-4">
+      <div class="col-md-4 offset-md-4">
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="num1">Number 1:</label>
+                <input type="number" class="form-control" id="num1" placeholder="Enter number 1" required>
+              </div>
+              <div class="form-group">
+                <label for="num2">Number 2:</label>
+                <input type="number" class="form-control" id="num2" placeholder="Enter number 2" required>
+              </div>
+              <div class="form-group">
+                <label for="result">Result:</label>
+                <input type="text" class="form-control" id="result" placeholder="Result" disabled>
+              </div>
+              <div class="form-group">
+                <label for="operator">Operator:</label>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-primary" onclick="calculate('+')">
+                    <input type="radio" name="operator" value="+" autocomplete="off" checked> +
+                  </label>
+                  <label class="btn btn-primary" onclick="calculate('-')">
+                    <input type="radio" name="operator" value="-" autocomplete="off"> -
+                  </label>
+                  <label class="btn btn-primary" onclick="calculate('*')">
+                    <input type="radio" name="operator" value="*" autocomplete="off"> *
+                  </label>
+                  <label class="btn btn-primary" onclick="calculate('/')">
+                    <input type="radio" name="operator" value="/" autocomplete="off"> /
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+</html>

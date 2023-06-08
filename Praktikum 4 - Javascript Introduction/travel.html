@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel : Bintang Abadi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .table-smaller {
+            max-width: 50%;
+        }
+        .checkbox-lg {
+            transform: scale(2);
+        }        
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h1>Travel Bintang Jaya Abadi</h1>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <table class="table mx-auto table-smaller table-sm border">
+                <thead class="text-center bg-dark">
+                  <tr class="text-center">
+                    <th scope="col" class="col-3 bg-danger text-white">Tujuan</th>
+                    <th scope="col" class="col-5 bg-danger text-white">Harga Tiket</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td>Jakarta</td>
+                    <td>100000</td>
+                </tr>
+                <tr>
+                    <td>Cirebon</td>
+                    <td>150000</td>
+                </tr>
+                <tr>
+                    <td>Tasikmalaya</td>
+                    <td>200000</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>    
+
+    <br><br><br><br><br>
+    <div class="d-flex justify-content-center">
+        <table class="table mx-auto table-smaller table-sm border">
+            <tbody class="text-center">
+            <tr>
+                <td colspan="2"><h1>Order Form Travel Bintang Jaya Abadi</h1></td>
+            </tr>
+            <tr>
+                <td class="col-3">
+                    <form>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="nama" name="nama" class="form-control" id="nama" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Tujuan</label>
+                            <select name="tujuan" id="tujuan" class="form-select" aria-label="Default select example">
+                                <option value="default">Pilih Tujuan</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Cirebon">Cirebon</option>
+                                <option value="Tasikmalaya">Tasikmalaya</option>
+                            </select>
+                            <div class="mb-3">
+                                <label for="jumlah-tiket" class="form-label">Jumlah Tiket</label>
+                                <input type="jumlah-tiket" name="jumlah-tiket" class="form-control" id="jumlah-tiket" aria-describedby="emailHelp">
+                            </div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input checkbox-lg ms-2" id="check-member" name="check-member">
+                            <label class="form-check-label" for="check-member">Member</label>
+                        </div>
+                    </form>
+                </td>
+                <td class="col-3">
+                    <form>
+                        <div class="mb-3">
+                            <label for="hitung-harga-tiket" class="form-label">Harga Tiket</label>
+                            <input type="hitung-harga-tiket" name="hitung-harga-tiket" class="form-control" id="hitung-harga-tiket" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sub-total" class="form-label">Sub Total</label>
+                            <input type="sub-total" name="sub-total" class="form-control" id="sub-total" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="diskon" class="form-label">Diskon</label>
+                            <input type="diskon" name="diskon" class="form-control" id="diskon" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="total-bayar" class="form-label">Total Bayar</label>
+                            <input type="total-bayar" name="total-bayar" class="form-control" id="total-bayar" aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"> 
+                    <button type="submit" id="hitung" class="btn btn-primary">Hitung</button>
+                    <button type="submit" id="ulang" class="btn btn-primary">Ulang</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src="travel.js"></script>
+</body>
+</html>

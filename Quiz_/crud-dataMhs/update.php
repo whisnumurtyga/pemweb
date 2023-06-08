@@ -20,6 +20,6 @@ $query = "UPDATE mahasiswa SET NIM='$nim', nama='$nama', alamat='$alamat', telp=
 mysqli_query($conn,$query);
 
 //mengalihkan kehalaman index.php//
-header("location:view.php");
+header("location:index.php");
 
 ?>

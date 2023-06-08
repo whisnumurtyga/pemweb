@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .table-smaller {
+            max-width: 50%;
+        }
+        .checkbox-lg {
+            transform: scale(2);
+        }        
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h1>IPK RULES</h1>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <table class="table mx-auto table-smaller table-sm border" id="ip-rules">
+                <thead class="text-center bg-dark">
+                  <tr class="text-center">
+                    <th scope="col" class="col-3 bg-danger text-white">Nilai Total</th>
+                    <th scope="col" class="col-5 bg-danger text-white">Indeks Prestasi</th>
+                    <th scope="col" class="col-5 bg-danger text-white">Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                <tr>
+                    <td>&gt80</td>
+                    <td>A</td>
+                    <td>Lulus dengan sangat baik</td>
+                </tr>
+                <tr>
+                    <td>69-80</td>
+                    <td>B</td>
+                    <td>Lulus dengan baik</td>
+                </tr>
+                <tr>
+                    <td>56-68</td>
+                    <td>C</td>
+                    <td>Lulus dengan cukup</td>
+                </tr>
+                <tr>
+                    <td>39-55</td>
+                    <td>D</td>
+                    <td>Lulus dengan kurang</td>
+                </tr>
+                <tr>
+                    <td>&lt38</td>
+                    <td>E</td>
+                    <td>Tidak Lulus</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>    
+
+    <br><br><br><br><br>
+    <div class="d-flex justify-content-center">
+        <table class="table mx-auto table-smaller table-sm border">
+            <tbody class="text-center">
+            <tr>
+                <td colspan="4" class="text-center"><h1>IPK CALCULATOR</h1></td>
+            </tr>
+            <tr>
+                <td class="col-3">
+                    <div class="mb-3">
+                        <label for="quiz" class="form-label">Quiz(10%)</label>
+                        <input type="quiz" name="quiz" class="form-control" id="quiz" aria-describedby="emailHelp">
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-3">
+                        <label for="tugas" class="form-label">Tugas(20%)</label>
+                        <input type="tugas" name="tugas" class="form-control" id="tugas" aria-describedby="emailHelp">
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-3">
+                        <label for="uts" class="form-label">UTS(30%)</label>
+                        <input type="uts" name="uts" class="form-control" id="uts" aria-describedby="emailHelp">
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-3">
+                        <label for="uas" class="form-label">UAS(40%)</label>
+                        <input type="uas" name="uas" class="form-control" id="uas" aria-describedby="emailHelp">
+                    </div>
+                </td>
+            </tr>
+            <tr class="">
+                <td colspan="4" class="">
+                    <div class="">
+                        <button type="submit" id="hitung" class="btn btn-primary">Hitung</button>
+                        <button type="submit" id="ulang" class="btn btn-primary">Ulang</button>
+                    </div> 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="mb-3">
+                        <label for="hasil-ip" class="form-label">Indeks Prestasi : </label>
+                        <input type="hasil-ip" name="hasil-ip" class="form-control" id="hasil-ip" aria-describedby="emailHelp">
+                    </div>
+                </td>
+                <td colspan="2">
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Keterangan : </label>
+                        <input type="keterangan" name="keterangan" class="form-control" id="keterangan" aria-describedby="emailHelp">
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script src="ipk.js"></script>
+</body>
+</html>
