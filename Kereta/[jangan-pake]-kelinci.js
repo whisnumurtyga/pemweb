@@ -1,0 +1,3 @@
+penumpang = []
+
+function naik(penump)
