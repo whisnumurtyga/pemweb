@@ -12,10 +12,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap demo</title>
+        <title>ADA ADA SAJA </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
         <style>
             svg {
                 color: inherit;
@@ -29,6 +31,22 @@
             .img-fluid {
                 max-width: 100%;
                 height: auto;
+            }
+            #search-loading {
+                display: none; /* Sembunyikan ikon loading secara default */
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .loading-svg {
+                animation: spin 2.5s infinite linear;
             }
         </style>
     </head>
@@ -66,9 +84,22 @@
         <div class="card" style="width: 50rem;">
             <div class="card-body">
                 <h5 class="card-title text-center mt-2" >DATA MAHASISWA</h5>
-                <button type="button" class="btn btn-danger mb-5 mt-3" data-bs-toggle="modal" data-bs-target="#addDataModal">Add Data</button>
+                <button type="button" class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#addDataModal">Add Data</button>
+                <div class="d-flex justify-content-center mb-5">
+                    <form class="col-lg-6 text-center" role="search">
+                        <div class="input-group mt-3">
+                            <input class="form-control rounded-3" id="search-input" type="search" placeholder="Search" aria-label="Search">
+
+                        </div>
+                    </form>
+                </div>
+                <div class="input-group-append mt-1 ml-3 d-flex justify-content-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="search-loading" class="ml-3 loading-svg" width="100" height="100" fill="currentColor" class="bi bi-brightness-low-fill" viewBox="0 0 16 16">
+                        <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8.5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"/>
+                    </svg>
+                </div>
                 <table class="table">
-                    <tbody>
+                    <tbody id="search-results">
                     <?php
                     include 'koneksi.php';
                         $siswa = mysqli_query($conn,"SELECT * FROM mahasiswa");
@@ -393,6 +424,69 @@
             });
         });
     </script>
+
+    <!-- SEARCH -->
+    <script>
+        $(document).ready(function() {
+            var searchLoading = $('#search-loading')
+            var table = $('.table')
+            $('#search-input').on('input', function() {
+                var keyword = $(this).val();
+                table.hide()
+                searchLoading.show()
+                setTimeout(function() {
+                    $.ajax({
+                        url: 'search.php',
+                        method: 'POST',
+                        data: { keyword: keyword },
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response)
+                            var html = '';
+                            if (response.length > 0) {
+                                $.each(response, function(index, data) {
+                                    html += '<tr>';
+                                    html += '<th scope="row" style="vertical-align: middle;">' + (index + 1) + '</th>';
+                                    html += '<td style="vertical-align: middle;">' + data.nama + '</td>';
+                                    html += '<td class="text-center">';
+                                    html += '<div class="image-container">';
+                                    html += '<img src="' + data.path_img + '" alt="" width="100px" class="img-fluid">';
+                                    html += '</div>';
+                                    html += '</td>';
+                                    html += '<td class="text-center">';
+                                    html += '<button type="button" class="btn btn-danger btn-sm mt-2 edit-button" data-bs-toggle="modal" data-bs-target="#editDataModal" data-nim="' + data.NIM + '">';
+                                    html += '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">';
+                                    html += '<path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>';
+                                    html += '<path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>';
+                                    html += '</svg>';
+                                    html += '</button>';
+                                    html += '</td>';
+                                    html += '<td class="text-center">';
+                                    html += '<button type="button" class="btn btn-danger btn-sm delete-button mt-2" data-bs-toggle="modal" data-nim="' + data.NIM + '" data-bs-target="#confirmDeleteModal">';
+                                    html += '<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">';
+                                    html += '<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>';
+                                    html += '<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>';
+                                    html += '</svg>';
+                                    html += '</button>';
+                                    html += '</td>';
+                                    html += '</tr>';
+                                });
+                            } else {
+                                html = '<tr><td colspan="5" class="text-center">No data found</td></tr>';
+                            }
+                            $('#search-results').html(html);
+                        },
+                        complete: function() {
+                            searchLoading.hide()
+                            table.show()
+                        }
+                    })
+                }, 3000)
+            })
+        });
+    </script>
+
+    
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
